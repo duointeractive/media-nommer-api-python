@@ -17,9 +17,7 @@ Python and Amazon AWS.
 Documentation
 -------------
 
-Documentation may be found on our `website`_.
-
-.. _website: http://duointeractive.github.com/media-nommer/
+Forthcoming. For now, check out the unit tests or the `media-nommer`_ website.
   
 License
 -------
