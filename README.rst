@@ -5,7 +5,7 @@ media-nommer-api-python is a client library for `media-nommer`_, the
 AWS-centric media encoding system. This module provides a Pythonic API that
 forms and sends RESTful queries to your `media-nommer`_'s master daemon. 
 
-.. _media-nommer: https://github.com/duointeractive/media-nommer-api-python
+.. _media-nommer: http://duointeractive.github.com/media-nommer/
 
 Status
 ------
