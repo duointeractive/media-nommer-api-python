@@ -19,7 +19,7 @@ class JobSubmitTests(unittest.TestCase):
         )
 
     def test_job_submit(self):
-        preset = 'iphone'
+        preset = 'browser_mid_q_2pass'
         job_opts = {'some_option': 'some_val'}
         print "COMEBACK", self.connection.job_submit(self.source_path,
                                                      self.dest_path,
