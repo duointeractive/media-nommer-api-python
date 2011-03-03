@@ -8,10 +8,10 @@ import simplejson
 
 class APIRequest(object):
     """
-    An abstraction class that all outbound API requests to :doc:`../feederd`
+    An abstraction class that all outbound API requests to ``feederd``
     are wrapped in. Handles some basic serialization and transport stuff.
     
-    :ivar dict data: The dict to be JSON-serialized and sent to the API server.
+    :ivar dict data: The dict to be urlencoded and sent to the API server.
     :ivar str api_hostname: The protocol, hostname, and port in URI format.
     :ivar str request_path: The URL path to the API method. 
     """
@@ -20,9 +20,9 @@ class APIRequest(object):
         :param str api_hostname: The protocol, hostname, and port of your feederd's
             REST API. There should be no trailing slash.
         :param str request_path: The URL to query. No leading or trailing slash.
-        :param dict data: A dict object of key/value pairs to JSON encode and send
-                to feederd's REST API. Make sure anything you send is
-                serializable by simplejson.
+        :param dict data: A dict object of key/value pairs to urlencode and send
+                to feederd's REST API. If some of your POST keys require
+                JSON values, you'll need to serialize in your API method.
         """
         self.data = data
         self.api_hostname = api_hostname
@@ -50,16 +50,17 @@ class APIResponse(object):
     Your application will be interested in this class's :py:attr:`data` instance
     variable, which contains the server's response.
     
-    :ivar dict data: The un-serialized response from :doc:`../feederd` in dict form.
+    :ivar dict data: The un-serialized response from ``feederd`` in dict form.
     :ivar APIRequest request: The :py:class:`APIRequest` object that this object 
         originated from.
-    :ivar str raw_response: The raw, serialized string returned from :doc:`../feederd`. 
+    :ivar str raw_response: The raw, serialized string returned from ``feederd``. 
     """
     def __init__(self, request, raw_response):
         """
-        Args:
-            request: The APIRequest object that created this response.
-            raw_response: The raw response that urllib2 got from feederd.
+        :type request: :py:class:`APIRequest`
+        :param request: The request object that instantiated this
+            response object.
+        :param str raw_response: The raw server response's body.
         """
         self.request = request
         self.raw_response = raw_response

@@ -1,10 +1,10 @@
 """
 This is the top-level API module. You should generally instantiate the
 :py:class:`APIConnection` object in here by using 
-:py:func:`media_nommer.client.connect` instead of direct initialization of 
+:py:func:`media_nommer_api.connect` instead of direct initialization of 
 :py:class:`APIConnection`.
 
-The :py:class:`APIConnection` class is your link to :doc:`../feederd`, 
+The :py:class:`APIConnection` class is your link to ``feederd``, 
 which runs a RESTful JSON API.
 """
 import simplejson
@@ -53,7 +53,7 @@ class APIConnection(object):
     ### Begin API call methods ###
     ##############################
 
-    def job_submit(self, source_path, dest_path, preset, job_options,
+    def job_submit(self, source_path, dest_path, preset, job_options={},
                    notify_url=None):
         """
         Submits an encoding job to feederd. This is an async call, so you may
@@ -64,13 +64,13 @@ class APIConnection(object):
             files to be saved to.
         :param str preset: A preset string that corresponds to key in the
             settings.PRESETS dict.
-        :param dict job_options: A dictionary with additional job options like 
-            bitrates, target encoding formats, etc. These options can vary 
-            based on the Nommer and the formats you're asking for.
-        :keyword str notify_url: A URL to send job state updates to.
+        :keyword dict job_options: (Optional) A dictionary with additional job 
+            options like bitrates, target encoding formats, etc. These options 
+            can vary based on the Nommer and the formats you're asking for.
+        :keyword str notify_url: (Optional) A URL to send job state updates to.
         
         :returns: An :py:class:`APIResponse <media_nommer.client.server_io.APIResponse>` object
-            containing :doc:`../feederd`'s response.
+            containing ``feederd``'s response.
         """
         job_data = {
             'source_path': source_path,
