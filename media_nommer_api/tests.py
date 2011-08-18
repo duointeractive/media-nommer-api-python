@@ -1,5 +1,6 @@
 import unittest
 from media_nommer_api import connect
+from media_nommer_api.presets import video_basic
 from media_nommer_api.testing_utils import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 class JobSubmitTests(unittest.TestCase):
@@ -19,9 +20,7 @@ class JobSubmitTests(unittest.TestCase):
         )
 
     def test_job_submit(self):
-        preset = 'browser_mid_q_2pass'
-        job_opts = {'some_option': 'some_val'}
+        job_opts = video_basic.web_medium('640x480', '1.3333')
         print "COMEBACK", self.connection.job_submit(self.source_path,
                                                      self.dest_path,
-                                                     preset,
                                                      job_opts)

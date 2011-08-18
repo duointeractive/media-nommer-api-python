@@ -4,7 +4,7 @@ should not be instantiated directly.
 """
 import urllib
 import urllib2
-import simplejson
+import json
 
 class APIRequest(object):
     """
@@ -36,9 +36,11 @@ class APIRequest(object):
         :returns: An :py:class:`APIResponse` object.
         :raisess: A :py:exc:`urllib2.URLError` when urllib2 runs into issues.
         """
-        encoded_data = urllib.urlencode(self.data)
+        if not self.data:
+            self.data = {}
+
         full_request_path = '%s/%s' % (self.api_hostname, self.request_path)
-        request = urllib2.Request(full_request_path, encoded_data)
+        request = urllib2.Request(full_request_path, json.dumps(self.data))
         response = urllib2.urlopen(request)
         return APIResponse(self, response.read())
 
@@ -66,7 +68,7 @@ class APIResponse(object):
         self.raw_response = raw_response
         # The response JSON parsed by simplejson. This is what you mostly
         # will want to look at from within your application.
-        self.data = simplejson.loads(self.raw_response)
+        self.data = json.loads(self.raw_response)
 
     def __str__(self):
         """

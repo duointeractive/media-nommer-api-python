@@ -5,14 +5,13 @@ This is the top-level API module. You should generally instantiate the
 :py:class:`APIConnection`.
 
 The :py:class:`APIConnection` class is your link to ``feederd``, 
-which runs a RESTful JSON API.
+which runs a JSON API.
 """
-import simplejson
 from media_nommer_api.server_io import APIRequest
 
 class APIConnection(object):
     """
-    Your application's means of communicating with feederd's RESTful JSON API.
+    Your application's means of communicating with feederd's JSON API.
     The public methods on this class correspond to API calls.
     
     API calls return :py:class:`APIResponse <media_nommer.client.server_io.APIResponse>` 
@@ -53,7 +52,7 @@ class APIConnection(object):
     ### Begin API call methods ###
     ##############################
 
-    def job_submit(self, source_path, dest_path, preset, job_options={},
+    def job_submit(self, source_path, dest_path, job_options,
                    notify_url=None):
         """
         Submits an encoding job to feederd. This is an async call, so you may
@@ -64,7 +63,7 @@ class APIConnection(object):
             files to be saved to.
         :param str preset: A preset string that corresponds to key in the
             settings.PRESETS dict.
-        :keyword dict job_options: (Optional) A dictionary with additional job 
+        :param dict job_options: A dictionary with additional job
             options like bitrates, target encoding formats, etc. These options 
             can vary based on the Nommer and the formats you're asking for.
         :keyword str notify_url: (Optional) A URL to send job state updates to.
@@ -76,11 +75,7 @@ class APIConnection(object):
             'source_path': source_path,
             'dest_path': dest_path,
             'notify_url': notify_url,
-            'preset': preset,
-            # Note that the many/varied encoding job options appear under
-            # their own key, separate from the args/kwargs that job_submit()
-            # has for common, important stuff.
-            'job_options': simplejson.dumps(job_options),
+            'job_options': job_options,
         }
 
         return self._send_request('job/submit', job_data)
