@@ -23,4 +23,5 @@ class JobSubmitTests(unittest.TestCase):
         job_opts = video_basic.web_medium('640x480', '1.3333')
         print "COMEBACK", self.connection.job_submit(self.source_path,
                                                      self.dest_path,
-                                                     job_opts)
+                                                     job_opts,
+                                                     notify_url='http://localhost:8000/')

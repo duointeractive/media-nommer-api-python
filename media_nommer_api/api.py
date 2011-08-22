@@ -8,6 +8,7 @@ The :py:class:`APIConnection` class is your link to ``feederd``,
 which runs a JSON API.
 """
 from media_nommer_api.server_io import APIRequest
+from media_nommer_api.exceptions import InvalidInputError
 
 class APIConnection(object):
     """
@@ -71,6 +72,15 @@ class APIConnection(object):
         :returns: An :py:class:`APIResponse <media_nommer.client.server_io.APIResponse>` object
             containing ``feederd``'s response.
         """
+        if not source_path:
+            raise InvalidInputError()
+
+        if not dest_path:
+            raise InvalidInputError()
+
+        if not job_options:
+            raise InvalidInputError()
+
         job_data = {
             'source_path': source_path,
             'dest_path': dest_path,
