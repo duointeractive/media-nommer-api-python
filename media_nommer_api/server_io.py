@@ -83,4 +83,4 @@ class APIResponse(object):
         :returns: True if there were no errors, False otherwise.
         :rtype: bool
         """
-        return True
+        return self.data['success']
