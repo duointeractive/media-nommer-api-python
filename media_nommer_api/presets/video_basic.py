@@ -1,3 +1,14 @@
+"""
+[16:51] <gtaylor> let's say I don't know the dimensions or aspect ratio of a video, but we know a width we'd like to get down to, while preserving whatever aspect ratio was in the source file. Would it be -vf yadif:scale=640?
+[16:52] <pasteeater> generally you could use '640:-1', but libx264 won't accept values not divisible by two, IIRC
+[16:52] <pasteeater> so then you can use scale="640:trunc(ow/a/2)*2" instead
+[16:53] <pasteeater> or scale="trunc(oh*a*2)/2:320" if you always want a specific height
+
+ffmpeg -y -i roving_web.wmv -threads 0 -vcodec libx264 -preset medium -profile baseline -b 400k -vf yadif,scale=640:-1 -pass 1 -f mp4 -an /dev/null
+
+ffmpeg -y -i roving_web.wmv -threads 0 -vcodec libx264 -preset medium -profile baseline -b 400k -vf yadif,scale=640:-1 -pass 2 -acodec libfaac -ab 128k -ar 48000 -ac 2 roving_enc.mp4
+"""
+
 def web_medium(size, aspect):
     return {
         'nommer': 'media_nommer.ec2nommerd.nommers.ffmpeg.FFmpegNommer',
@@ -6,19 +17,12 @@ def web_medium(size, aspect):
                 'outfile_options': [
                     ('threads', 0),
                     ('vcodec', 'libx264'),
-                    ('vpre', 'slow_firstpass'),
-                    ('vpre', 'baseline'),
+                    ('preset', 'medium'),
+                    ('profile', 'baseline'),
                     ('b', '400k'),
-                    ('r', '30'),
-                    ('acodec', 'libfaac'),
-                    ('strict', 'experimental'),
-                    ('ab', '128k'),
-                    ('ar', '48000'),
-                    ('s', size),
-                    ('aspect', aspect),
-                    ('ac', '2'),
+                    ('vf', 'yadif,scale=640:-1'),
                     ('pass', '1'),
-                    ('f', 'rawvideo'),
+                    ('f', 'mp4'),
                     ('an', None),
                 ],
             },
@@ -26,19 +30,15 @@ def web_medium(size, aspect):
                 'outfile_options': [
                     ('threads', 0),
                     ('vcodec', 'libx264'),
-                    ('vpre', 'slow'),
-                    ('vpre', 'baseline'),
+                    ('preset', 'medium'),
+                    ('profile', 'baseline'),
                     ('b', '400k'),
-                    ('r', '30'),
+                    ('vf', 'yadif,scale=640:-1'),
+                    ('pass', '2'),
                     ('acodec', 'libfaac'),
-                    ('strict', 'experimental'),
                     ('ab', '128k'),
                     ('ar', '48000'),
-                    ('s', size),
-                    ('aspect', aspect),
                     ('ac', '2'),
-                    ('pass', '2'),
-                    ('deinterlace', None),
                     ('f', 'mp4'),
                 ],
             },
