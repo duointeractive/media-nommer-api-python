@@ -15,10 +15,9 @@ def web_medium():
         'options': [
             {
                 'outfile_options': [
-                    ('threads', 0),
                     ('vcodec', 'libx264'),
                     ('preset', 'medium'),
-                    ('profile', 'baseline'),
+                    ('vprofile', 'baseline'),
                     ('b', '400k'),
                     ('vf', "yadif,scale='640:trunc(ow/a/2)*2'"),
                     ('pass', '1'),
@@ -28,10 +27,9 @@ def web_medium():
             },
             {
                 'outfile_options': [
-                    ('threads', 0),
                     ('vcodec', 'libx264'),
                     ('preset', 'medium'),
-                    ('profile', 'baseline'),
+                    ('vprofile', 'baseline'),
                     ('b', '400k'),
                     ('vf', "yadif,scale='640:trunc(ow/a/2)*2'"),
                     ('pass', '2'),
@@ -41,6 +39,7 @@ def web_medium():
                     ('ac', '2'),
                     ('f', 'mp4'),
                 ],
+                'move_atom_to_front': True,
             },
         ],
     }
