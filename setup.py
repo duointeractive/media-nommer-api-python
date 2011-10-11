@@ -17,6 +17,7 @@ setup(
     provides=['media_nommer_api'],
     packages=[
         'media_nommer_api',
+        'media_nommer_api.presets',
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
