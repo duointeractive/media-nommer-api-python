@@ -9,7 +9,7 @@ ffmpeg -y -i roving_web.wmv -threads 0 -vcodec libx264 -preset medium -profile b
 ffmpeg -y -i roving_web.wmv -threads 0 -vcodec libx264 -preset medium -profile baseline -b 400k -vf yadif,scale=640:-1 -pass 2 -acodec libfaac -ab 128k -ar 48000 -ac 2 roving_enc.mp4
 """
 
-def web_medium(size, aspect):
+def web_medium():
     return {
         'nommer': 'media_nommer.ec2nommerd.nommers.ffmpeg.FFmpegNommer',
         'options': [
@@ -20,7 +20,7 @@ def web_medium(size, aspect):
                     ('preset', 'medium'),
                     ('profile', 'baseline'),
                     ('b', '400k'),
-                    ('vf', 'yadif,scale=640:-1'),
+                    ('vf', 'yadif,scale=640:trunc(ow/a/2)*2'),
                     ('pass', '1'),
                     ('f', 'mp4'),
                     ('an', None),
@@ -33,7 +33,7 @@ def web_medium(size, aspect):
                     ('preset', 'medium'),
                     ('profile', 'baseline'),
                     ('b', '400k'),
-                    ('vf', 'yadif,scale=640:-1'),
+                    ('vf', 'yadif,scale=640:trunc(ow/a/2)*2'),
                     ('pass', '2'),
                     ('acodec', 'libfaac'),
                     ('ab', '128k'),
