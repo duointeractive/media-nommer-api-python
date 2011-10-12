@@ -14,14 +14,13 @@ class APIConnection(object):
     """
     Your application's means of communicating with feederd's JSON API.
     The public methods on this class correspond to API calls.
-    
+
     API calls return :py:class:`APIResponse <media_nommer.client.server_io.APIResponse>` 
     objects with the results of your queries. Check the APIResponse.data attrib 
     for your un-serialized results.
-    
-    .. tip::
-        Do not instantiate this class directly. Use the
-        :py:func:`media_nommer.client.connect` method for that purpose.
+
+    .. tip:: Do not instantiate this class directly. Use
+        the :py:func:`media_nommer_api.connect` function for that purpose.
 
     :ivar str api_hostname: The protocol, hostname, and port in URI format.
     """
@@ -42,7 +41,7 @@ class APIConnection(object):
         this APIConnection object to avoid repetition.
         
         :returns:
-            A media_nommer.client.server_io.APIResponse object with the result
+            A media_nommer_api.server_io.APIResponse object with the result
             of sending the APIRequest object this method forms. Your application
             will be interested in the APIResponse.data attribute, which is the
             un-serialized response from the server. 
@@ -69,7 +68,7 @@ class APIConnection(object):
             can vary based on the Nommer and the formats you're asking for.
         :keyword str notify_url: (Optional) A URL to send job state updates to.
         
-        :returns: An :py:class:`APIResponse <media_nommer.client.server_io.APIResponse>` object
+        :returns: An :py:class:`APIResponse <media_nommer_api.server_io.APIResponse>` object
             containing ``feederd``'s response.
         """
         if not source_path:
