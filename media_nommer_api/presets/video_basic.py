@@ -36,6 +36,7 @@ def web_medium():
                     ('acodec', 'libfaac'),
                     ('ab', '128k'),
                     ('ar', '48000'),
+                    ('async', '480'),
                     ('ac', '2'),
                     ('f', 'mp4'),
                 ],
