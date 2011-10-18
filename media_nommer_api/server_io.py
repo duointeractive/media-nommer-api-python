@@ -2,7 +2,6 @@
 API request and response abstraction and helpers. This module and its contents 
 should not be instantiated directly.
 """
-import urllib
 import urllib2
 import json
 

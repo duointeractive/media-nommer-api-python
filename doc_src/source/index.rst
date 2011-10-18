@@ -42,6 +42,7 @@ Documentation
    
    installation
    gettingstarted
+   presets
    apiref
 
 Indices and tables

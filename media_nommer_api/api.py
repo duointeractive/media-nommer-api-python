@@ -31,7 +31,8 @@ class APIConnection(object):
         Do any setup work to prepare this object for communication with
         feederd's API. This method constructor should be as lazy as possible.
         
-        :param str api_hostname: A URL with protocol, hostname, and port. No trailing slash.
+        :param str api_hostname: A URL with protocol, hostname, and port.
+            No trailing slash.
         """
         self.api_hostname = api_hostname
 
@@ -68,8 +69,8 @@ class APIConnection(object):
             can vary based on the Nommer and the formats you're asking for.
         :keyword str notify_url: (Optional) A URL to send job state updates to.
         
-        :returns: An :py:class:`APIResponse <media_nommer_api.server_io.APIResponse>` object
-            containing ``feederd``'s response.
+        :returns: An :py:class:`APIResponse <media_nommer_api.server_io.APIResponse>`
+            object containing ``feederd``'s response.
         """
         if not source_path:
             raise InvalidInputError()

@@ -1,4 +1,14 @@
+"""
+The following presets are geared towards compatibility with Android devices.
+Some of the older handsets are very picky about certain settings like framerate,
+audio channels, and etc.
+"""
+
 def android_low():
+    """
+    A lower-quality Android video encoding setting. This should be suitable for
+    the vast majority of devices.
+    """
     return {
         'nommer': 'media_nommer.ec2nommerd.nommers.ffmpeg.FFmpegNommer',
         'options': [
