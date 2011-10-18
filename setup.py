@@ -13,7 +13,6 @@ setup(
     license='BSD License',
     url='http://duointeractive.github.com/media-nommer-api-python/',
     platforms=["any"],
-    requires=['simplejson'],
     provides=['media_nommer_api'],
     packages=[
         'media_nommer_api',

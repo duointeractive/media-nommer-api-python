@@ -12,9 +12,7 @@ issue please let us know on our `issue tracker`_.
 Requirements
 ------------
 
-* Python_ 2.5 or higher, Python_ 2.6 or 2.7 recommended. Python_ 3.x is not 
-  supported (yet).
-* simplejson
+* Python_ 2.6 or 2.7. Python_ 3.x is not supported (yet).
 
 Installing
 ----------

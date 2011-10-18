@@ -65,7 +65,7 @@ class APIResponse(object):
         """
         self.request = request
         self.raw_response = raw_response
-        # The response JSON parsed by simplejson. This is what you mostly
+        # The response JSON parsed by json. This is what you mostly
         # will want to look at from within your application.
         self.data = json.loads(self.raw_response)
 
